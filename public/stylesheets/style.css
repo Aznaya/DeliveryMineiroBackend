@@ -1,0 +1,22 @@
+body {
+  padding: 50px;
+  font: 26px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: saddlebrown;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.container {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  border: dotted saddlebrown ;
+  background-color: snow;
+}
+
+.titulo h1 {
+  display: flex;
+  justify-content: center;
+}
