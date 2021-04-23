@@ -1,4 +1,4 @@
-require('getmodules');
+require('getmodule');
 
 const app = require('../app');
 const request = require('supertest')
