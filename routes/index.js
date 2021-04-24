@@ -46,4 +46,27 @@ App.get('/teste/historicos', function (req, res) {
   });
 });
 
+//  Empresa ...
+App.route('/empresa')
+  .post(Empresa.create)
+
+App.route('/empresa/:id')
+  .get(Empresa.getById)
+  .put(Empresa.update)
+  .delete(Empresa.delete)
+
+//  Historico ...
+App.route('/historico')
+  .get(Historico.list)
+  .post(Historico.create)
+
+//  Login ...
+App.route('/login')
+  .post(Login.create)
+
+App.route('/login/:id')
+  .get(Login.getById)
+  .put(Login.update)
+  .delete(Login.delete)
+
 module.exports = App;

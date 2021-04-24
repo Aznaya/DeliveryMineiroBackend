@@ -14,11 +14,11 @@ exports.create = function (req, res) {
 exports.getById = function (req, res) {
     var Registro = req.params.id;
     
-    console.log('Registro para busca: ', idchave);
+    console.log('Registro para busca: ', Registro);
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('SELECT * FROM login WHERE idchave = ?', [idchave],
+        connection.query('SELECT * FROM login WHERE idchave = ?', [Registro],
             function (err, result) {
                 if (err) return res.status(400).json(err);
 
@@ -34,7 +34,7 @@ exports.update = function (req, res) {
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
         connection.query('UPDATE login SET nome = ?, senha = ?, CPF/CNPJ = ?, Endereco = ?, empresa = ? WHERE idchave = ? ',
-         [data.nome, data.senha, data.CPF_CNPJ, data.Endereco, data.empresa, idchave],
+         [data.nome, data.senha, data.CPF_CNPJ, data.Endereco, data.empresa, Registro],
             function (err, result) {
                 if (err) return res.status(400).json(err);
 
@@ -48,7 +48,7 @@ exports.delete = function (req, res) {
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('DELETE FROM login WHERE idchave = ? ', [idchave], function (err, result) {
+        connection.query('DELETE FROM login WHERE idchave = ? ', [Registro], function (err, result) {
             if (err) return res.status(400).json(err);
 
             return res.status(200).json(result);
