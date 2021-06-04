@@ -1,9 +1,8 @@
 exports.list = function (req, res) {
-    console.log(`Listando: `)
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
         connection.query(
-            'SELECT * FROM historico; ',
+            'SELECT * FROM historico_usuario; ',
             [], function (err, result) {
             if (err) return res.status(400).json();
 
@@ -17,7 +16,7 @@ exports.create = function (req, res) {
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('INSERT INTO historico SET ?', [data], function (err, result) {
+        connection.query('INSERT INTO historico_usuario SET ?', [data], function (err, result) {
             if (err) return res.status(400).json(err);
 
             return res.status(200).json(result);

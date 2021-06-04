@@ -36,7 +36,7 @@ app.use(
     user: 'root',
     password: 'root',
     port: 3306,
-    database: 'mydb',
+    database: 'delivery_mineiro',
     insecureAuth : true
   }, 'request')
 );

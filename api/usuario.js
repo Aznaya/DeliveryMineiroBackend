@@ -3,7 +3,7 @@ exports.create = function (req, res) {
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('INSERT INTO login SET ?', [data], function (err, result) {
+        connection.query('INSERT INTO usuario SET ?', [data], function (err, result) {
             if (err) return res.status(400).json(err);
 
             return res.status(200).json(result);
@@ -18,7 +18,7 @@ exports.getById = function (req, res) {
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('SELECT * FROM login WHERE idchave = ?', [Registro],
+        connection.query('SELECT * FROM usuario WHERE id_usuario = ?', [Registro],
             function (err, result) {
                 if (err) return res.status(400).json(err);
 
@@ -33,7 +33,8 @@ exports.update = function (req, res) {
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('UPDATE login SET nome = ?, senha = ?, CPF/CNPJ = ?, Endereco = ?, empresa = ? WHERE idchave = ? ',
+        connection.query('UPDATE usuario SET nome = ?, senha = ?, senha_confirmada = ?, cpf = ?, endereco = ?, ' +
+            'id_tipo_conta = ? WHERE id_usuario = ? ',
          [data.nome, data.senha, data.CPF_CNPJ, data.Endereco, data.empresa, Registro],
             function (err, result) {
                 if (err) return res.status(400).json(err);
@@ -48,7 +49,7 @@ exports.delete = function (req, res) {
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('DELETE FROM login WHERE idchave = ? ', [Registro], function (err, result) {
+        connection.query('DELETE FROM usuario WHERE id_usuario = ? ', [Registro], function (err, result) {
             if (err) return res.status(400).json(err);
 
             return res.status(200).json(result);
