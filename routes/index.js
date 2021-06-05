@@ -10,6 +10,7 @@ App.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+
 // Para teste, realiza uma consulta no BD que retorna a tabela Empresa
 App.get('/teste/empresas', function (req, res) {
   req.getConnection(function (err, connection) {
@@ -38,7 +39,7 @@ App.get('/teste/usuarios', function (req, res) {
 App.get('/teste/historicos', function (req, res) {
   req.getConnection(function (err, connection) {
     if (err) return res.status(400).json();
-    connection.query('SELECT * FROM Historico', [], function (err, result) {
+    connection.query('SELECT * FROM historico', [], function (err, result) {
       if (err) return res.status(400).json();
       console.log('Conexão ao MYSQL realizada');
       return res.status(200).json(result);
