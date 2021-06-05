@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Login` (
   `nome` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
   `chave_admin` VARCHAR(10) NOT NULL,
-  `CNPJ/CPF` VARCHAR(45) NOT NULL,
-  `Endereco` VARCHAR(45) NOT NULL,
-  `empresa` VARCHAR(10) NOT NULL,
+  `cnpjcpf` VARCHAR(45) NOT NULL,
+  `endereco` VARCHAR(45) NOT NULL,
+  `empresa` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idchave`))
 ENGINE = InnoDB;
 
@@ -37,10 +37,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Empresa` (
   `idEmpresa` INT NOT NULL AUTO_INCREMENT,
-  `Empresa` VARCHAR(45) NOT NULL,
-  `Conta_Fiado` INT NOT NULL,
-  `Valor` DECIMAL(4) NOT NULL,
-  `Login_idchave` INT NOT NULL,
+  `empresa` VARCHAR(45) NOT NULL,
+  `conta_fiado` INT NOT NULL,
+  `valor` DECIMAL(4) NOT NULL,
+  `login_idchave` INT NOT NULL,
   PRIMARY KEY (`idEmpresa`, `Login_idchave`),
   INDEX `fk_Empresa_Login1_idx` (`Login_idchave` ASC) VISIBLE,
   CONSTRAINT `fk_Empresa_Login1`
@@ -72,3 +72,7 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+select * from `mydb`.`Login`;
+# drop database `mydb`;
+# ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
