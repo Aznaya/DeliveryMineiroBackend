@@ -80,6 +80,10 @@ App.get('/teste/tipocontas', function (req, res) {
 App.route('/empresa')
   .post(Empresa.create)
 
+//Login
+App.route('/auth')
+  .post(Usuario.Auth)
+
 App.route('/empresa/:id')
   .get(Empresa.getById)
   .put(Empresa.update)
