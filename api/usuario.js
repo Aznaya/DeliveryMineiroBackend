@@ -26,24 +26,26 @@ exports.getById = function (req, res) {
             });
     });
 }
-exports.Auth = function(request, response) {
-	var cpf = request.body.cpf;
-	var senha = request.body.senha;
+exports.auth = function(req, res) {
+	var cpf = req.body.cpf;
+	var senha = req.body.senha;
 	if (cpf && senha) {
-		connection.query('SELECT * FROM usuario WHERE cpf = ? AND senha = ?', [cpf, senha], function(error, results, fields) {
+        req.getConnection(function (err, connection) {
+		connection.query('SELECT * FROM usuario WHERE cpf = ? AND senha = ?', [cpf, senha], function(err, results) {
+            if (err) return res.status(400).json(err);
 			if (results.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = username;
-				response.send('Login realizado com sucesso');
+				res.send('Login realizado com sucesso');
 			} else {
-				response.send('Incorrect Username and/or Password!');
+				res.send('Incorrect Username and/or Password!');
 			}			
-			response.end();
+			res.end();
 		});
+    });
 	} else {
-		response.send('Please enter Username and Password!');
-		response.end();
+		res.send('Please enter Username and Password!');
+		res.end();
 	}
+    
 }
 
 

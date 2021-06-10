@@ -36,20 +36,6 @@ App.get('/teste/usuarios', function (req, res) {
   });
 });
 
-// Para teste, realiza uma consulta no BD que retorna a tabela Historico Usuario
-App.get('/teste/historico/usuarios', function (req, res) {
-  req.getConnection(function (err, connection) {
-    if (err) return res.status(400).json();
-<<<<<<< HEAD
-    connection.query('SELECT * FROM historico', [], function (err, result) {
-=======
-    connection.query('SELECT * FROM historico_usuario', [], function (err, result) {
-      if (err) return res.status(400).json();
-      console.log('Conexão ao MYSQL realizada');
-      return res.status(200).json(result);
-    });
-  });
-});
 
 // Para teste, realiza uma consulta no BD que retorna a tabela Historico Empresa
 App.get('/teste/historico/empresas', function (req, res) {
@@ -68,7 +54,7 @@ App.get('/teste/tipocontas', function (req, res) {
   req.getConnection(function (err, connection) {
     if (err) return res.status(400).json();
     connection.query('SELECT * FROM tipo_conta', [], function (err, result) {
->>>>>>> c59e77f2cee287acf33f2a97a56c442faa627f52
+
       if (err) return res.status(400).json();
       console.log('Conexão ao MYSQL realizada');
       return res.status(200).json(result);
@@ -82,7 +68,7 @@ App.route('/empresa')
 
 //Login
 App.route('/auth')
-  .post(Usuario.Auth)
+  .post(Usuario.auth)
 
 App.route('/empresa/:id')
   .get(Empresa.getById)
@@ -107,4 +93,5 @@ App.route('/usuario/:id')
   .put(Usuario.update)
   .delete(Usuario.delete)
 
-module.exports = App;
+           module.exports = App;
+
