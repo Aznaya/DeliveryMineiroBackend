@@ -93,4 +93,4 @@ App.route('/usuario/:id')
   .put(Usuario.update)
   .delete(Usuario.delete)
 
-  module.exports = App;
+module.exports = App;
