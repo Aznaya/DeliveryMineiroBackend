@@ -5,6 +5,7 @@ var Empresa = getmodule('api/empresa');
 var Historico_Empresa = getmodule('api/historico_empresa');
 var Historico_Usuario = getmodule('api/historico_usuario');
 var Usuario = getmodule('api/usuario');
+var Auth = getmodule('api/autenticacao');
 
 /* GET home page. */
 App.get('/', function(req, res, next) {
@@ -68,7 +69,7 @@ App.route('/empresa')
 
 //Login
 App.route('/auth')
-  .post(Usuario.auth)
+  .post(Auth.auth)
 
 App.route('/empresa/:id')
   .get(Empresa.getById)
