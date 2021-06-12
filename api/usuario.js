@@ -1,14 +1,32 @@
 exports.create = function (req, res) {
     var data = req.body;
-
-    req.getConnection(function (err, connection) {
-        if (err) return res.status(400).json();
-        connection.query('INSERT INTO usuario SET ?', [data], function (err, result) {
-            if (err) return res.status(400).json(err);
-
-            return res.status(200).json(result);
-        });
-    });
+    var nome = req.body.nome;
+    var senha = req.body.senha;
+    var cpf = req.body.cpf;
+    
+    var valida = validaDados(nome,senha,cpf);
+    switch (valida) {
+        case 0:
+              req.getConnection(function (err, connection) {
+                if (err) return res.status(400).json();
+                connection.query('INSERT INTO usuario SET ?', [data], function (err, result) {
+                    if (err) return res.status(400).json(err);
+        
+                    return res.status(200).json(result);
+                });
+            });
+        
+          break;
+        case -1:
+            res.send('Por Favor preencher o nome');
+          break;
+        case -2:
+            res.send('Senha precisa ser maior ou igual a 5 caracteres');
+          break;
+        case -3:
+            res.send('Cpf inválido');
+          break;
+      }
 }
 
 exports.getById = function (req, res) {
@@ -26,29 +44,6 @@ exports.getById = function (req, res) {
             });
     });
 }
-exports.auth = function(req, res) {
-	var cpf = req.body.cpf;
-	var senha = req.body.senha;
-	if (cpf && senha) {
-        req.getConnection(function (err, connection) {
-		connection.query('SELECT * FROM usuario WHERE cpf = ? AND senha = ?', [cpf, senha], function(err, results) {
-            if (err) return res.status(400).json(err);
-			if (results.length > 0) {
-				res.send('Login realizado com sucesso');
-			} else {
-				res.send('Incorrect Username and/or Password!');
-			}			
-			res.end();
-		});
-    });
-	} else {
-		res.send('Please enter Username and Password!');
-		res.end();
-	}
-    
-}
-
-
 exports.update = function (req, res) {
     var data = req.body,
         Registro = req.params.id;
@@ -77,4 +72,17 @@ exports.delete = function (req, res) {
             return res.status(200).json(result);
         });
     });
+}
+
+
+function validaDados(nome,senha,cpf){
+ if(nome.length == 0){
+     return -1;
+ }else if(senha.length < 5){
+   return -2;
+ }else if(cpf.length != 11){
+     return -3
+ }else{
+     return 0;
+ }
 }
