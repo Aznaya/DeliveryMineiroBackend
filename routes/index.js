@@ -8,7 +8,7 @@ var Usuario = getmodule('api/usuario');
 var Auth = getmodule('api/autenticacao');
 
 /* GET home page. */
-App.get('/', function(req, res, next) {
+App.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 

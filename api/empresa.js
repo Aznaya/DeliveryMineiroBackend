@@ -18,30 +18,30 @@ exports.create = function (req, res) {
     var nome = req.body.nome;
     var senha = req.body.senha;
     var cnpj = req.body.cnpj;
-    
-    var valida = validaDados(nome,senha,cnpj);
+
+    var valida = validaDados(nome, senha, cnpj);
     switch (valida) {
         case 0:
-              req.getConnection(function (err, connection) {
+            req.getConnection(function (err, connection) {
                 if (err) return res.status(400).json();
                 connection.query('INSERT INTO empresa SET ?', [data], function (err, result) {
                     if (err) return res.status(400).json(err);
-        
+
                     return res.status(200).json(result);
                 });
             });
-        
-          break;
+
+            break;
         case -1:
             res.send('Por Favor preencher o nome');
-          break;
+            break;
         case -2:
             res.send('Senha precisa ser maior ou igual a 5 caracteres');
-          break;
+            break;
         case -3:
             res.send('CNPJ inválido');
-          break;
-      }
+            break;
+    }
 }
 
 exports.update = function (req, res) {
@@ -73,14 +73,14 @@ exports.delete = function (req, res) {
     });
 }
 
-function validaDados(nome,senha,cnpj){
-    if(nome.length == 0){
+function validaDados(nome, senha, cnpj) {
+    if (nome.length == 0) {
         return -1;
-    }else if(senha.length < 5){
-      return -2;
-    }else if(cnpj.length != 14){
+    } else if (senha.length < 5) {
+        return -2;
+    } else if (cnpj.length != 14) {
         return -3
-    }else{
+    } else {
         return 0;
     }
-   }
+}

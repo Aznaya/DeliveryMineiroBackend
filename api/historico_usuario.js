@@ -4,10 +4,10 @@ exports.list = function (req, res) {
         connection.query(
             'SELECT * FROM historico_usuario; ',
             [], function (err, result) {
-            if (err) return res.status(400).json();
+                if (err) return res.status(400).json();
 
-            return res.status(200).json(result);
-        });
+                return res.status(200).json(result);
+            });
     });
 }
 
