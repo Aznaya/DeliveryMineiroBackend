@@ -27,11 +27,9 @@ exports.auth = function (req, res) {
 					res.end();
 				});
 			});
-
 		}
 	} else {
 		res.send('Please enter Username and Password!');
 		res.end();
 	}
-
 }
