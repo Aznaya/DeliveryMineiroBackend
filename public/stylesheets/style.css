@@ -25,3 +25,8 @@ a {
   display: flex;
   justify-content: center;
 }
+
+.img img {
+  width: 75%;
+  height: 75%;
+}
