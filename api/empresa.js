@@ -15,9 +15,9 @@ exports.getById = function (req, res) {
 
 exports.create = function (req, res) {
     var data = req.body;
-    var nome = req.body.nome;
-    var senha = req.body.senha;
-    var cnpj = req.body.cnpj;
+    var nome = data.nome;
+    var senha = data.senha;
+    var cnpj = data.cnpj;
 
     var valida = validaDados(nome, senha, cnpj);
     switch (valida) {
