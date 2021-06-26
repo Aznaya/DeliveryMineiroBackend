@@ -6,6 +6,8 @@ var Historico_Empresa = getmodule('api/historico_empresa');
 var Historico_Usuario = getmodule('api/historico_usuario');
 var Usuario = getmodule('api/usuario');
 var Auth = getmodule('api/autenticacao');
+var Lista_Pedido = getmodule('api/lista_pedido');
+var Opcao = getmodule('api/opcao');
 
 /* GET home page. */
 App.get('/', function (req, res, next) {
@@ -63,18 +65,27 @@ App.get('/teste/tipocontas', function (req, res) {
   });
 });
 
-//  Empresa ...
-App.route('/empresa')
-  .post(Empresa.create)
-
 //Login
 App.route('/auth')
   .post(Auth.auth)
+
+//  Empresa ...
+App.route('/empresa')
+  .post(Empresa.create)
 
 App.route('/empresa/:id')
   .get(Empresa.getById)
   .put(Empresa.update)
   .delete(Empresa.delete)
+
+//  Usuario ...
+App.route('/usuario')
+  .post(Usuario.create)
+
+App.route('/usuario/:id')
+  .get(Usuario.getById)
+  .put(Usuario.update)
+  .delete(Usuario.delete)
 
 //  Historico ...
 App.route('/historico/empresa')
@@ -85,13 +96,21 @@ App.route('/historico/usuario')
   .get(Historico_Usuario.list)
   .post(Historico_Usuario.create)
 
-//  Usuario ...
-App.route('/usuario')
-  .post(Usuario.create)
+// Lista de pedidos
+App.route('/lista-pedido')
+  .post(Lista_Pedido.create)
+  .get(Lista_Pedido.list)
 
-App.route('/usuario/:id')
+App.route('/lista-pedido/:id')
   .get(Usuario.getById)
-  .put(Usuario.update)
+  .delete(Usuario.delete)
+
+// Opções
+App.route('/opcao')
+  .post(Opcao.create)
+  .get(Opcao.list)
+
+App.route('/lista-pedido/:id')
   .delete(Usuario.delete)
 
 module.exports = App;
