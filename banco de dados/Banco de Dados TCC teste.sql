@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `delivery_mineiro`.`lista_pedidos` (
   `valor` DECIMAL(4) NOT NULL,
   `id_empresa` INT,
   `id_usuario` INT,
+  `descricao` VARCHAR(60),
   PRIMARY KEY (`id_lista_pedidos`, `id_empresa`, `id_usuario`),
   INDEX `fk_lista_pedidos_idx` (`id_empresa`, `id_usuario` ASC) VISIBLE,
   CONSTRAINT `fk_lista_pedidos`
