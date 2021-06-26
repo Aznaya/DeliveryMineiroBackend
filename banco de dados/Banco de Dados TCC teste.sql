@@ -118,6 +118,14 @@ CREATE TABLE IF NOT EXISTS `delivery_mineiro`.`lista_pedidos` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `delivery_mineiro`.`opcao` (
+	`id_opcao` INT NOT NULL,
+    `nome` VARCHAR(45) NOT NULL,
+    `descricao` VARCHAR(45) NOT NULL,
+    `valor` FLOAT NOT NULL,
+	PRIMARY KEY (`id_opcao`))
+ENGINE = InnoDB;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
