@@ -29,14 +29,14 @@ exports.create = function (req, res) {
     }
 }
 
-exports.getById = function (req, res) {
-    var Registro = req.params.id;
+exports.getByCpf = function (req, res) {
+    var Registro = req.params.cpf;
 
     console.log('Registro para busca: ', Registro);
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('SELECT * FROM usuario WHERE id_usuario = ?', [Registro],
+        connection.query('SELECT * FROM usuario WHERE cpf = ?', [Registro],
             function (err, result) {
                 if (err) return res.status(400).json(err);
 

@@ -1,10 +1,10 @@
 
-exports.getById = function (req, res) {
-    var Registro = req.params.id;
+exports.getByCnpj = function (req, res) {
+    var Registro = req.params.cnpj;
 
     req.getConnection(function (err, connection) {
         if (err) return res.status(400).json();
-        connection.query('SELECT * FROM empresa WHERE id_empresa = ?', [Registro],
+        connection.query('SELECT * FROM empresa WHERE cnpj = ?', [Registro],
             function (err, result) {
                 if (err) return res.status(400).json(err);
 
@@ -18,7 +18,7 @@ exports.create = function (req, res) {
     var nome = data.nome;
     var senha = data.senha;
     var cnpj = data.cnpj;
-
+    data.valor = 0;
     var valida = validaDados(nome, senha, cnpj);
     switch (valida) {
         case 0:

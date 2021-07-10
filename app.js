@@ -34,7 +34,7 @@ app.use(
   connection(mysql, {
     host: 'localhost',
     user: 'root',
-    password: '1234',
+    password: 'root',
     port: 3306,
     database: 'delivery_mineiro',
     insecureAuth: true

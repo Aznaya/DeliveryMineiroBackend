@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `delivery_mineiro`.`empresa` (
   `senha` VARCHAR(45) NOT NULL,
   `senha_confirmada` VARCHAR(45) NOT NULL,
   `id_tipo_conta` INT NOT NULL,
-  `data` DATE NOT NULL,
+  `data` VARCHAR(14) NOT NULL,
   `cnpj` VARCHAR(14) NOT NULL,
   `valor` DECIMAL(4) NOT NULL,
   `endereco` VARCHAR(45) NOT NULL,
@@ -69,7 +69,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery_mineiro`.`historico_usuario` (
   `id_historico` INT NOT NULL AUTO_INCREMENT,
-  `data` DATE NOT NULL,
+  `data` VARCHAR(14) NOT NULL,
   `valor` DECIMAL(4) NOT NULL,
   `id_usuario` INT NOT NULL,
   PRIMARY KEY (`id_historico`, `id_usuario`),
@@ -86,7 +86,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery_mineiro`.`historico_empresa` (
   `id_historico` INT NOT NULL AUTO_INCREMENT,
-  `data` DATE NOT NULL,
+  `data` VARCHAR(14) NOT NULL,
   `valor` DECIMAL(4) NOT NULL,
   `id_empresa` INT NOT NULL,
   PRIMARY KEY (`id_historico`, `id_empresa`),
@@ -103,7 +103,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery_mineiro`.`lista_pedidos` (
   `id_lista_pedidos` INT NOT NULL AUTO_INCREMENT,
-  `data` DATE NOT NULL,
+  `data` VARCHAR(14) NOT NULL,
   `valor` DECIMAL(4) NOT NULL,
   `id_empresa` INT,
   `id_usuario` INT,
@@ -130,6 +130,8 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+SELECT * FROM `delivery_mineiro`.`empresa`;
 
 #drop database `delivery_mineiro`;
 #select * from `delivery_mineiro`.`tipo_conta` ;
